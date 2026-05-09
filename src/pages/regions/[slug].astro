@@ -1,0 +1,73 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import EntryHeader from '@/components/entry/EntryHeader';
+import EntryMetaGrid from '@/components/entry/EntryMetaGrid';
+import EntryRightRail from '@/components/entry/EntryRightRail';
+import QuoteCard from '@/components/entry/QuoteCard';
+import RelatedEntries from '@/components/entry/RelatedEntries';
+import EntryLayout from '@/layouts/EntryLayout.astro';
+import {
+  entryCollectionBasePaths,
+  entryCollectionLabels,
+  getAllEntrySummaries,
+  getRelatedSummaries,
+  getSourceSummaries,
+} from '@/lib/entry';
+
+interface Props {
+  entry: CollectionEntry<'regions'>;
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection('regions');
+
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const allEntries = await getAllEntrySummaries();
+const relatedEntries = getRelatedSummaries(entry, allEntries);
+const sourceEntries = getSourceSummaries(entry, allEntries);
+const metaItems = [
+  { label: '条目类型', value: entryCollectionLabels.regions },
+  { label: '地区类型', value: entry.data.regionType },
+  { label: '状态', value: entry.data.status },
+  { label: '更新日期', value: entry.data.updatedAt },
+];
+---
+
+<EntryLayout
+  title={entry.data.title}
+  summary={entry.data.summary}
+  breadcrumbs={[{ label: entryCollectionLabels.regions, href: entryCollectionBasePaths.regions }, { label: entry.data.title }]}
+>
+  <EntryHeader
+    collection="regions"
+    collectionLabel={entryCollectionLabels.regions}
+    title={entry.data.title}
+    aliases={entry.data.aliases}
+    summary={entry.data.summary}
+    tags={entry.data.tags}
+    status={entry.data.status}
+    spoilerLevel={entry.data.spoilerLevel}
+  />
+  <EntryMetaGrid items={metaItems} />
+  <QuoteCard>{entry.data.summary}</QuoteCard>
+  <section data-pagefind-body class="mt-5 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
+    <div class="prose prose-slate max-w-none prose-headings:tracking-normal prose-a:text-blue-600">
+      <Content />
+    </div>
+  </section>
+
+  <div slot="rightRail">
+    <EntryRightRail title={entry.data.title} meta={metaItems} related={relatedEntries} sources={sourceEntries} />
+  </div>
+
+  <div slot="footer" class="mt-6">
+    <RelatedEntries entries={relatedEntries} title="底部相关条目" />
+  </div>
+</EntryLayout>

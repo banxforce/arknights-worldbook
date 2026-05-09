@@ -53,15 +53,15 @@
 
 ## Phase 5
 
-- [ ] `/regions/[slug]`
-- [ ] `/factions/[slug]`
-- [ ] `/events/[slug]`
-- [ ] `/terms/[slug]`
-- [ ] `/sources/[slug]`
-- [ ] 详情页渲染 MDX 正文
-- [ ] 右侧栏包含元信息、相关条目、资料出处
-- [ ] `terms/originium` 详情页体验良好
-- [ ] `pnpm build` 通过
+- [x] `/regions/[slug]`
+- [x] `/factions/[slug]`
+- [x] `/events/[slug]`
+- [x] `/terms/[slug]`
+- [x] `/sources/[slug]`
+- [x] 详情页渲染 MDX 正文
+- [x] 右侧栏包含元信息、相关条目、资料出处
+- [x] `terms/originium` 详情页体验良好
+- [x] `pnpm build` 通过
 
 ## Phase 6
 

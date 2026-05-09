@@ -1,16 +1,31 @@
 ---
+import AppShell from './AppShell.astro';
 import BaseLayout from './BaseLayout.astro';
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
 
 interface Props {
   title: string;
   summary?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
-const { title, summary } = Astro.props;
+const { title, summary, breadcrumbs = [] } = Astro.props;
 ---
 
 <BaseLayout title={`${title} | 泰拉百科`} description={summary ?? '泰拉百科条目'}>
-  <main class="mx-auto max-w-4xl px-6 py-10">
-    <slot />
-  </main>
+  <AppShell breadcrumbs={breadcrumbs}>
+    <div class="grid gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
+      <article class="min-w-0">
+        <slot />
+      </article>
+      <aside class="min-w-0 xl:sticky xl:top-[96px] xl:self-start">
+        <slot name="rightRail" />
+      </aside>
+    </div>
+    <slot name="footer" />
+  </AppShell>
 </BaseLayout>
