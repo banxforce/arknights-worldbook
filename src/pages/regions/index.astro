@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import RegionCard from '@/components/cards/RegionCard';
+import IndexLayout from '@/layouts/IndexLayout.astro';
+
+const regions = (await getCollection('regions')).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title, 'zh-CN'),
+);
+
+const filters = [...new Set(regions.flatMap((entry) => entry.data.tags))];
+---
+
+<IndexLayout
+  title="国家与地区"
+  eyebrow="Regions"
+  summary="整理泰拉大陆上的国家、移动城市与重要地域，帮助从地理和政治背景进入世界观。"
+  searchPlaceholder="搜索国家、移动城市、地域标签..."
+  filters={filters}
+>
+  <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+    {
+      regions.map((entry) => (
+        <RegionCard
+          slug={entry.data.slug}
+          title={entry.data.title}
+          summary={entry.data.summary}
+          tags={entry.data.tags}
+          regionType={entry.data.regionType}
+        />
+      ))
+    }
+  </section>
+</IndexLayout>

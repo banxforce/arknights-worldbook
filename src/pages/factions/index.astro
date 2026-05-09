@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import FactionCard from '@/components/cards/FactionCard';
+import IndexLayout from '@/layouts/IndexLayout.astro';
+
+const factions = (await getCollection('factions')).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title, 'zh-CN'),
+);
+
+const filters = [...new Set(factions.flatMap((entry) => entry.data.tags))];
+---
+
+<IndexLayout
+  title="阵营组织"
+  eyebrow="Factions"
+  summary="汇总罗德岛、整合运动等组织条目，呈现它们与地区、事件和核心术语之间的关系。"
+  searchPlaceholder="搜索组织、立场、行动领域..."
+  filters={filters}
+>
+  <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+    {
+      factions.map((entry) => (
+        <FactionCard
+          slug={entry.data.slug}
+          title={entry.data.title}
+          summary={entry.data.summary}
+          tags={entry.data.tags}
+          factionType={entry.data.factionType}
+        />
+      ))
+    }
+  </section>
+</IndexLayout>

@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import TermCard from '@/components/cards/TermCard';
+import IndexLayout from '@/layouts/IndexLayout.astro';
+
+const terms = (await getCollection('terms')).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title, 'zh-CN'),
+);
+
+const filters = [...new Set(terms.flatMap((entry) => entry.data.tags))];
+---
+
+<IndexLayout
+  title="术语词典"
+  eyebrow="Terms"
+  summary="解释源石、矿石病、天灾和源石技艺等基础概念，为阅读事件和组织条目提供上下文。"
+  searchPlaceholder="搜索术语、别名、概念标签..."
+  filters={filters}
+>
+  <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+    {
+      terms.map((entry) => (
+        <TermCard
+          slug={entry.data.slug}
+          title={entry.data.title}
+          aliases={entry.data.aliases}
+          summary={entry.data.summary}
+          tags={entry.data.tags}
+          termType={entry.data.termType}
+          spoilerLevel={entry.data.spoilerLevel}
+        />
+      ))
+    }
+  </section>
+</IndexLayout>

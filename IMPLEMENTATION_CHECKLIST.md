@@ -42,14 +42,14 @@
 
 ## Phase 4
 
-- [ ] `/regions`
-- [ ] `/factions`
-- [ ] `/events`
-- [ ] `/terms`
-- [ ] `/sources`
-- [ ] 列表页数据来自 Content Collections
-- [ ] 有统一索引页样式
-- [ ] `pnpm build` 通过
+- [x] `/regions`
+- [x] `/factions`
+- [x] `/events`
+- [x] `/terms`
+- [x] `/sources`
+- [x] 列表页数据来自 Content Collections
+- [x] 有统一索引页样式
+- [x] `pnpm build` 通过
 
 ## Phase 5
 

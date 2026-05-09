@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import SourceCard from '@/components/cards/SourceCard';
+import IndexLayout from '@/layouts/IndexLayout.astro';
+
+const sources = (await getCollection('sources')).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title, 'zh-CN'),
+);
+
+const filters = [...new Set(sources.flatMap((entry) => entry.data.tags))];
+---
+
+<IndexLayout
+  title="档案库"
+  eyebrow="Sources"
+  summary="收纳主线、活动与其他资料来源条目，让设定索引能够追溯到具体文本来源。"
+  searchPlaceholder="搜索档案、章节、资料类型..."
+  filters={filters}
+>
+  <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+    {
+      sources.map((entry) => (
+        <SourceCard
+          slug={entry.data.slug}
+          title={entry.data.title}
+          summary={entry.data.summary}
+          tags={entry.data.tags}
+          sourceType={entry.data.sourceType}
+          updatedAt={entry.data.updatedAt}
+        />
+      ))
+    }
+  </section>
+</IndexLayout>
