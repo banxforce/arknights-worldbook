@@ -10,7 +10,7 @@ import {
   FileClock,
   Files,
   Flame,
-  Map,
+  MapIcon,
   RadioTower,
   Search,
   Shield,
@@ -75,7 +75,7 @@ const sections = [
     id: "terra" as const,
     label: "世界观总览",
     caption: "泰拉 / 源石 / 国家",
-    icon: Map,
+    icon: MapIcon,
   },
   {
     id: "chernobog" as const,
