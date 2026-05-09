@@ -1,0 +1,30 @@
+---
+import Sidebar from '@/components/layout/Sidebar';
+import TopBar from '@/components/layout/TopBar';
+import Breadcrumbs from '@/components/layout/Breadcrumbs';
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const { breadcrumbs = [] } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<div class="min-h-screen bg-transparent text-slate-950">
+  <Sidebar currentPath={currentPath} />
+  <div class="min-h-screen lg:pl-[260px]">
+    <TopBar />
+    <main class="px-4 py-6 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-[1500px]">
+        {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
+        <slot />
+      </div>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  summary?: string;
+}
+
+const { title, summary } = Astro.props;
+---
+
+<BaseLayout title={`${title} | 泰拉百科`} description={summary ?? '泰拉百科索引'}>
+  <main class="mx-auto max-w-6xl px-6 py-10">
+    <slot />
+  </main>
+</BaseLayout>

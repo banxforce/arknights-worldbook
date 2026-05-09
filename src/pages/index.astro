@@ -1,0 +1,30 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AppShell from '@/layouts/AppShell.astro';
+import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
+---
+
+<BaseLayout title="泰拉百科 | 布局系统">
+  <AppShell>
+    <Card className="overflow-hidden">
+      <CardHeader>
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge tone="blue">Phase 2</Badge>
+          <Badge>Layout System</Badge>
+        </div>
+        <CardTitle className="mt-4 text-2xl">泰拉百科基础布局已就绪</CardTitle>
+        <CardDescription>
+          当前阶段完成左侧导航、顶部搜索栏、面包屑与基础 UI 组件。下一阶段会把这里替换为参考图中的首页两列三行内容区。
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="grid gap-4 text-sm text-slate-600 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-xl border border-slate-200/80 bg-slate-50/70 p-4">固定桌面侧边栏</div>
+          <div className="rounded-xl border border-slate-200/80 bg-slate-50/70 p-4">全局搜索顶栏</div>
+          <div className="rounded-xl border border-slate-200/80 bg-slate-50/70 p-4">蓝灰色资料库视觉系统</div>
+        </div>
+      </CardContent>
+    </Card>
+  </AppShell>
+</BaseLayout>
