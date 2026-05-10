@@ -19,7 +19,7 @@ interface EntryRightRailProps {
 export default function EntryRightRail({ title, meta, related, sources }: EntryRightRailProps) {
   return (
     <div className="space-y-4">
-      <EntryMetaGrid items={meta} />
+      <EntryMetaGrid items={meta} compact />
       <MiniRelationGraph title={title} related={related} />
       <RelatedEntries entries={related.slice(0, 4)} compact />
       <SourceList sources={sources} />

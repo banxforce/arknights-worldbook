@@ -5,9 +5,10 @@ interface MetaItem {
 
 interface EntryMetaGridProps {
   items: MetaItem[];
+  compact?: boolean;
 }
 
-export default function EntryMetaGrid({ items }: EntryMetaGridProps) {
+export default function EntryMetaGrid({ items, compact = false }: EntryMetaGridProps) {
   const visibleItems = items.filter((item) => item.value !== undefined && item.value !== '');
 
   if (visibleItems.length === 0) {
@@ -15,7 +16,12 @@ export default function EntryMetaGrid({ items }: EntryMetaGridProps) {
   }
 
   return (
-    <section className="mt-5 grid gap-3 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
+    <section
+      className={[
+        compact ? 'grid-cols-1' : 'mt-5 sm:grid-cols-2 lg:grid-cols-4',
+        'grid gap-3 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm',
+      ].join(' ')}
+    >
       {visibleItems.map((item) => (
         <div key={item.label} className="rounded-xl border border-slate-200/70 bg-slate-50/70 p-4">
           <dt className="text-xs font-semibold text-slate-500">{item.label}</dt>
