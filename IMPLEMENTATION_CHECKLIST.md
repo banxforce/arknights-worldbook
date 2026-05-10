@@ -82,10 +82,10 @@
 
 ## Phase 8
 
-- [ ] 404 页面
-- [ ] README
-- [ ] SEO title / description
-- [ ] 空状态
-- [ ] 基础响应式
-- [ ] 无未使用大依赖
-- [ ] 最终 `pnpm build` 通过
+- [x] 404 页面
+- [x] README
+- [x] SEO title / description
+- [x] 空状态
+- [x] 基础响应式
+- [x] 无未使用大依赖
+- [x] 最终 `pnpm build` 通过

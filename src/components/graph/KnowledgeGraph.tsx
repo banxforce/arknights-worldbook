@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import TagPill from '@/components/cards/TagPill';
+import EmptyState from '@/components/ui/EmptyState';
 import type { EntryCollection } from '@/lib/entry';
 
 export interface GraphNode {
@@ -47,6 +48,10 @@ function getNodePosition(node: GraphNode, index: number, total: number) {
 }
 
 export default function KnowledgeGraph({ nodes, edges }: KnowledgeGraphProps) {
+  if (nodes.length === 0) {
+    return <EmptyState title="暂无图谱节点" description="当前内容集合还没有可用于生成关系图谱的条目。" />;
+  }
+
   const sortedNodes = [...nodes].sort((a, b) => {
     if (a.slug === 'originium') return -1;
     if (b.slug === 'originium') return 1;

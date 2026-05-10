@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { SITE_SUBTITLE, SITE_TITLE } from '@/lib/constants';
 
 interface Props {
   title?: string;
@@ -7,9 +8,11 @@ interface Props {
 }
 
 const {
-  title = '泰拉百科',
-  description = '明日方舟世界观知识库',
+  title = SITE_TITLE,
+  description = SITE_SUBTITLE,
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 ---
 
 <!doctype html>
@@ -19,6 +22,15 @@ const {
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f8fbff" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <title>{title}</title>
   </head>
   <body class="overflow-x-hidden">

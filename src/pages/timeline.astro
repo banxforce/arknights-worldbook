@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import AppShell from '@/layouts/AppShell.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Timeline from '@/components/timeline/Timeline';
+import EmptyState from '@/components/ui/EmptyState';
 
 const events = await getCollection('events');
 const timelineEvents = events.map((entry) => {
@@ -33,6 +34,12 @@ const filters = [...new Set(events.flatMap((entry) => entry.data.tags))];
       </p>
     </section>
 
-    <Timeline events={timelineEvents} filters={filters} client:load />
+    {
+      timelineEvents.length > 0 ? (
+        <Timeline events={timelineEvents} filters={filters} client:load />
+      ) : (
+        <EmptyState title="暂无时间线事件" description="事件集合还没有可用于时间线展示的内容。" />
+      )
+    }
   </AppShell>
 </BaseLayout>

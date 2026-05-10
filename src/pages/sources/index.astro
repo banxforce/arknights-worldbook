@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import SourceCard from '@/components/cards/SourceCard';
+import EmptyState from '@/components/ui/EmptyState';
 import IndexLayout from '@/layouts/IndexLayout.astro';
 
 const sources = (await getCollection('sources')).sort((a, b) =>
@@ -17,18 +18,22 @@ const filters = [...new Set(sources.flatMap((entry) => entry.data.tags))];
   searchPlaceholder="搜索档案、章节、资料类型..."
   filters={filters}
 >
-  <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-    {
-      sources.map((entry) => (
-        <SourceCard
-          slug={entry.data.slug}
-          title={entry.data.title}
-          summary={entry.data.summary}
-          tags={entry.data.tags}
-          sourceType={entry.data.sourceType}
-          updatedAt={entry.data.updatedAt}
-        />
-      ))
-    }
-  </section>
+  {
+    sources.length > 0 ? (
+      <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        {sources.map((entry) => (
+          <SourceCard
+            slug={entry.data.slug}
+            title={entry.data.title}
+            summary={entry.data.summary}
+            tags={entry.data.tags}
+            sourceType={entry.data.sourceType}
+            updatedAt={entry.data.updatedAt}
+          />
+        ))}
+      </section>
+    ) : (
+      <EmptyState title="暂无档案条目" description="档案集合还没有可展示内容，后续可在 src/content/sources 中添加 MDX 条目。" />
+    )
+  }
 </IndexLayout>

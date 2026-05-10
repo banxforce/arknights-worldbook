@@ -1,0 +1,33 @@
+---
+import { ArrowLeft, Search } from 'lucide-react';
+import AppShell from '@/layouts/AppShell.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="页面未找到 | 泰拉百科" description="泰拉百科没有找到这个页面。">
+  <AppShell>
+    <section class="mx-auto max-w-3xl rounded-2xl border border-slate-200/80 bg-white p-8 text-center shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-[0.24em] text-blue-600">404</p>
+      <h1 class="mt-4 text-3xl font-semibold tracking-normal text-slate-950">页面未找到</h1>
+      <p class="mx-auto mt-4 max-w-xl text-sm leading-7 text-slate-600">
+        这条档案可能尚未被整理，或链接已经变更。可以回到首页继续浏览，也可以使用搜索查找相关条目。
+      </p>
+      <div class="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href="/"
+          class="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-blue-600 bg-blue-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+        >
+          <ArrowLeft aria-hidden="true" className="size-4" />
+          返回首页
+        </a>
+        <a
+          href="/search"
+          class="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-blue-200 hover:text-blue-700"
+        >
+          <Search aria-hidden="true" className="size-4" />
+          搜索条目
+        </a>
+      </div>
+    </section>
+  </AppShell>
+</BaseLayout>

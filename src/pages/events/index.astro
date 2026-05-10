@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import EventCard from '@/components/cards/EventCard';
+import EmptyState from '@/components/ui/EmptyState';
 import IndexLayout from '@/layouts/IndexLayout.astro';
 
 const events = (await getCollection('events')).sort((a, b) =>
@@ -17,18 +18,22 @@ const filters = [...new Set(events.flatMap((entry) => entry.data.tags))];
   searchPlaceholder="搜索事件、时期、相关地区..."
   filters={filters}
 >
-  <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-    {
-      events.map((entry) => (
-        <EventCard
-          slug={entry.data.slug}
-          title={entry.data.title}
-          summary={entry.data.summary}
-          tags={entry.data.tags}
-          eventDate={entry.data.eventDate}
-          spoilerLevel={entry.data.spoilerLevel}
-        />
-      ))
-    }
-  </section>
+  {
+    events.length > 0 ? (
+      <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        {events.map((entry) => (
+          <EventCard
+            slug={entry.data.slug}
+            title={entry.data.title}
+            summary={entry.data.summary}
+            tags={entry.data.tags}
+            eventDate={entry.data.eventDate}
+            spoilerLevel={entry.data.spoilerLevel}
+          />
+        ))}
+      </section>
+    ) : (
+      <EmptyState title="暂无事件条目" description="事件集合还没有可展示内容，后续可在 src/content/events 中添加 MDX 条目。" />
+    )
+  }
 </IndexLayout>
