@@ -100,6 +100,9 @@
         "regionType": {
           "type": "string"
         },
+        "mainlineOrder": {
+          "type": "number"
+        },
         "$schema": {
           "type": "string"
         }
