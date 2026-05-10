@@ -65,12 +65,12 @@
 
 ## Phase 6
 
-- [ ] Pagefind 已安装
-- [ ] build 脚本包含 `pagefind --site dist`
-- [ ] `/search` 可用
-- [ ] TopBar 搜索可进入搜索功能
-- [ ] `pnpm build` 通过
-- [ ] `pnpm preview` 下搜索可用
+- [x] Pagefind 已安装
+- [x] build 脚本包含 `pagefind --site dist`
+- [x] `/search` 可用
+- [x] TopBar 搜索可进入搜索功能
+- [x] `pnpm build` 通过
+- [x] `pnpm preview` 下搜索可用
 
 ## Phase 7
 
