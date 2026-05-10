@@ -66,4 +66,101 @@ a {
   .terra-link {
     @apply text-blue-600 transition hover:text-blue-700;
   }
+
+  .terra-orbit {
+    position: absolute;
+    border-radius: 9999px;
+    border: 1px solid rgba(191, 219, 254, 0.58);
+  }
+
+  .terra-orbit::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from 222deg,
+      transparent 0 18%,
+      rgba(147, 197, 253, 0.55) 19% 22%,
+      transparent 23% 48%,
+      rgba(255, 255, 255, 0.9) 49% 51%,
+      transparent 52% 100%
+    );
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+  }
+
+  .terra-orbit-one {
+    right: -7.2rem;
+    top: -4.4rem;
+    width: 31rem;
+    height: 31rem;
+  }
+
+  .terra-orbit-two {
+    right: -4.4rem;
+    top: -1.8rem;
+    width: 25.5rem;
+    height: 25.5rem;
+    border-color: rgba(226, 232, 240, 0.86);
+    opacity: 0.88;
+  }
+
+  .terra-orbit-three {
+    right: -1.7rem;
+    top: 1.1rem;
+    width: 20rem;
+    height: 20rem;
+    border-color: rgba(191, 219, 254, 0.68);
+    opacity: 0.72;
+  }
+
+  .terra-star {
+    position: absolute;
+    z-index: 25;
+    border-radius: 9999px;
+    background: rgb(96 165 250);
+    box-shadow:
+      0 0 0 3px rgb(255 255 255),
+      0 0 0 5px rgba(147, 197, 253, 0.36),
+      0 8px 22px rgba(37, 99, 235, 0.18);
+  }
+
+  .terra-star-primary {
+    right: 13.4rem;
+    top: 4.4rem;
+    width: 0.55rem;
+    height: 0.55rem;
+  }
+
+  .terra-star-secondary {
+    right: 6.9rem;
+    top: 11.8rem;
+    width: 0.38rem;
+    height: 0.38rem;
+    opacity: 0.78;
+  }
+
+  .terra-star-tertiary {
+    right: 18.7rem;
+    top: 8.9rem;
+    width: 0.25rem;
+    height: 0.25rem;
+    opacity: 0.48;
+  }
+
+  img.terra-planet {
+    position: absolute;
+    right: -3.6rem;
+    top: -0.25rem;
+    width: 25rem;
+    height: 25rem;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    object-fit: contain;
+    opacity: 0.9;
+    filter: drop-shadow(0 20px 54px rgba(59, 130, 246, 0.18));
+  }
 }
