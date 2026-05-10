@@ -4,9 +4,29 @@ import RegionCard from '@/components/cards/RegionCard';
 import EmptyState from '@/components/ui/EmptyState';
 import IndexLayout from '@/layouts/IndexLayout.astro';
 
-const regions = (await getCollection('regions')).sort((a, b) =>
-  a.data.title.localeCompare(b.data.title, 'zh-CN'),
-);
+const regionTypeOrder = {
+  国家: 0,
+  地区: 1,
+} as const;
+
+const getRegionTypeOrder = (regionType?: string) =>
+  regionTypeOrder[regionType as keyof typeof regionTypeOrder] ?? 2;
+
+const regions = (await getCollection('regions')).sort((a, b) => {
+  const typeDiff = getRegionTypeOrder(a.data.regionType) - getRegionTypeOrder(b.data.regionType);
+
+  if (typeDiff !== 0) {
+    return typeDiff;
+  }
+
+  const orderDiff = (a.data.mainlineOrder ?? 999) - (b.data.mainlineOrder ?? 999);
+
+  if (orderDiff !== 0) {
+    return orderDiff;
+  }
+
+  return a.data.title.localeCompare(b.data.title, 'zh-CN');
+});
 
 const filters = [...new Set(regions.flatMap((entry) => entry.data.tags))];
 ---

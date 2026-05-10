@@ -23,7 +23,7 @@ export default function RegionCard({ slug, title, summary, tags, regionType }: R
         <div className="flex items-start justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold text-slate-950">{title}</h2>
-            {regionType && <p className="mt-1 text-xs font-medium text-slate-500">{regionType}</p>}
+            {regionType && <p className="mt-1 text-xs font-medium text-blue-600">{regionType}</p>}
           </div>
           <Building2 aria-hidden="true" className="size-5 shrink-0 text-slate-400" />
         </div>

@@ -32,6 +32,7 @@ const regions = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/regions' }),
   schema: baseEntrySchema.extend({
     regionType: z.string().optional(),
+    mainlineOrder: z.number().optional(),
   }),
 });
 
