@@ -74,11 +74,11 @@
 
 ## Phase 7
 
-- [ ] `/timeline`
-- [ ] `/graph`
-- [ ] 时间线基于 events collection
-- [ ] 图谱基于 related 字段
-- [ ] `pnpm build` 通过
+- [x] `/timeline`
+- [x] `/graph`
+- [x] 时间线基于 events collection
+- [x] 图谱基于 related 字段
+- [x] `pnpm build` 通过
 
 ## Phase 8
 
