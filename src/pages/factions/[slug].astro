@@ -6,6 +6,7 @@ import EntryRightRail from '@/components/entry/EntryRightRail';
 import QuoteCard from '@/components/entry/QuoteCard';
 import RelatedEntries from '@/components/entry/RelatedEntries';
 import EntryLayout from '@/layouts/EntryLayout.astro';
+import { displayFactionType, displayStatus } from '@/lib/display';
 import {
   entryCollectionBasePaths,
   entryCollectionLabels,
@@ -34,8 +35,8 @@ const relatedEntries = getRelatedSummaries(entry, allEntries);
 const sourceEntries = getSourceSummaries(entry, allEntries);
 const metaItems = [
   { label: '条目类型', value: entryCollectionLabels.factions },
-  { label: '组织类型', value: entry.data.factionType },
-  { label: '状态', value: entry.data.status },
+  { label: '组织类型', value: displayFactionType(entry.data.factionType) },
+  { label: '状态', value: displayStatus(entry.data.status) },
   { label: '更新日期', value: entry.data.updatedAt },
 ];
 ---
