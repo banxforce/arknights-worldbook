@@ -31,6 +31,7 @@ const filters = [...new Set(factions.flatMap((entry) => entry.data.tags))];
             summary={entry.data.summary}
             tags={entry.data.tags}
             factionType={entry.data.factionType}
+            cover={entry.data.cover}
           />
         ))}
       </section>

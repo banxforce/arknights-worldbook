@@ -8,10 +8,14 @@ interface FactionCardProps {
   summary: string;
   tags: string[];
   factionType?: string;
+  cover?: string;
 }
 
-export default function FactionCard({ slug, title, summary, tags, factionType }: FactionCardProps) {
+export default function FactionCard({ slug, title, summary, tags, factionType, cover }: FactionCardProps) {
   const factionTypeLabel = displayFactionType(factionType);
+  const iconFrameClass = cover
+    ? 'border-slate-900 bg-slate-950 p-2.5 shadow-inner shadow-white/10 group-hover:border-blue-400'
+    : 'border-slate-200 bg-slate-50 text-slate-800 group-hover:border-blue-200 group-hover:text-blue-700';
 
   return (
     <a
@@ -19,8 +23,12 @@ export default function FactionCard({ slug, title, summary, tags, factionType }:
       className="group flex min-h-[244px] flex-col rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-[0_18px_44px_rgba(15,23,42,0.08)]"
     >
       <div className="flex items-start justify-between gap-4">
-        <span className="flex size-14 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-800 transition group-hover:border-blue-200 group-hover:text-blue-700">
-          <Shield aria-hidden="true" className="size-7" />
+        <span className={`flex size-14 items-center justify-center rounded-2xl border transition ${iconFrameClass}`}>
+          {cover ? (
+            <img src={cover} alt={`${title} 标志`} className="size-full object-contain" loading="lazy" />
+          ) : (
+            <Shield aria-hidden="true" className="size-7" />
+          )}
         </span>
         <Network aria-hidden="true" className="size-5 text-slate-400" />
       </div>
