@@ -151,7 +151,7 @@ export default function PagefindSearch({ initialQuery = '' }: PagefindSearchProp
   }, [isLoading, query, results.length]);
 
   return (
-    <section className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
+    <section className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm sm:p-6">
       <div className="max-w-3xl">
         <SearchBox
           defaultValue={query}
@@ -181,7 +181,7 @@ export default function PagefindSearch({ initialQuery = '' }: PagefindSearchProp
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-wrap items-center gap-2">
                   <TagPill tone="blue">{result.typeLabel}</TagPill>
-                  <span className="text-xs font-medium text-slate-500">{result.url}</span>
+                  <span className="break-all text-xs font-medium text-slate-500">{result.url}</span>
                 </div>
                 <ArrowRight
                   aria-hidden="true"

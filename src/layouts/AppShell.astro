@@ -20,8 +20,8 @@ const currentPath = Astro.url.pathname;
   <Sidebar currentPath={currentPath} />
   <div class="min-h-screen lg:pl-[260px]">
     <TopBar />
-    <main class="px-4 py-6 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-[1500px]">
+    <main class="min-w-0 px-3 py-5 sm:px-6 sm:py-6 lg:px-8">
+      <div class="mx-auto max-w-[1500px] min-w-0">
         {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
         <slot />
       </div>

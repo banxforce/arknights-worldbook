@@ -15,8 +15,8 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
   }
 
   return (
-    <nav className="mb-5 flex items-center gap-2 text-sm text-slate-500" aria-label="面包屑">
-      <a href="/" className="inline-flex items-center gap-1 transition hover:text-blue-700">
+    <nav className="mb-5 flex min-w-0 flex-wrap items-center gap-2 text-sm text-slate-500" aria-label="面包屑">
+      <a href="/" className="inline-flex shrink-0 items-center gap-1 transition hover:text-blue-700">
         <Home aria-hidden="true" className="size-4" />
         <span>首页</span>
       </a>
@@ -31,7 +31,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
                 {item.label}
               </a>
             ) : (
-              <span className="font-medium text-slate-700">{item.label}</span>
+              <span className="break-words font-medium text-slate-700">{item.label}</span>
             )}
           </span>
         );

@@ -79,8 +79,8 @@ export default function KnowledgeGraph({ nodes, edges }: KnowledgeGraphProps) {
 
   return (
     <section className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
-      <div className="grid gap-0 xl:grid-cols-[minmax(0,1fr)_340px]">
-        <div className="relative min-h-[620px] border-b border-slate-200/80 bg-[radial-gradient(circle_at_50%_45%,rgba(219,234,254,0.9),transparent_34%),linear-gradient(180deg,#ffffff,#f8fbff)] xl:border-b-0 xl:border-r">
+      <div className="grid min-w-0 gap-0 xl:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="relative min-h-[460px] overflow-hidden border-b border-slate-200/80 bg-[radial-gradient(circle_at_50%_45%,rgba(219,234,254,0.9),transparent_34%),linear-gradient(180deg,#ffffff,#f8fbff)] sm:min-h-[620px] xl:border-b-0 xl:border-r">
           <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             <ellipse cx="50" cy="50" rx="35" ry="32" fill="none" stroke="rgb(191 219 254)" strokeDasharray="1.4 1.4" strokeWidth="0.25" />
             {visibleEdges.map((edge) => (
@@ -102,13 +102,13 @@ export default function KnowledgeGraph({ nodes, edges }: KnowledgeGraphProps) {
               key={node.id}
               href={node.href}
               className={[
-                'absolute flex min-h-14 w-32 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-2xl border px-3 py-2 text-center shadow-sm transition hover:-translate-y-[54%] hover:shadow-md',
+                'absolute flex min-h-12 w-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-xl border px-2 py-2 text-center shadow-sm transition hover:-translate-y-[54%] hover:shadow-md sm:min-h-14 sm:w-32 sm:rounded-2xl sm:px-3',
                 toneByCollection[node.collection],
                 node.slug === 'originium' ? 'z-20 scale-110 border-blue-400 bg-white shadow-[0_18px_46px_rgba(37,99,235,0.16)]' : 'z-10',
               ].join(' ')}
               style={{ left: `${node.x}%`, top: `${node.y}%` }}
             >
-              <span className="max-w-full truncate text-sm font-semibold">{node.title}</span>
+              <span className="max-w-full truncate text-xs font-semibold sm:text-sm">{node.title}</span>
               <span className="mt-1 text-[11px] font-medium opacity-70">{node.collectionLabel}</span>
             </a>
           ))}

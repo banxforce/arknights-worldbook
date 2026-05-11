@@ -20,12 +20,7 @@ export default function TimelineNode({ event, index }: TimelineNodeProps) {
   const alignRight = index % 2 === 1;
 
   return (
-    <div
-      className={[
-        'relative grid gap-4 md:grid-cols-[1fr_56px_1fr]',
-        alignRight ? '' : 'md:[&_.timeline-card]:col-start-1',
-      ].join(' ')}
-    >
+    <div className="relative grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_56px_minmax(0,1fr)]">
       <div className={['timeline-card', alignRight ? 'md:col-start-3' : 'md:col-start-1'].join(' ')}>
         <a
           href={event.href}
