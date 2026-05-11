@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpenText } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import TagPill from './TagPill';
 
 interface TermCardProps {
@@ -9,6 +9,7 @@ interface TermCardProps {
   tags: string[];
   termType?: string;
   spoilerLevel: string;
+  cover?: string;
 }
 
 export default function TermCard({
@@ -19,6 +20,7 @@ export default function TermCard({
   tags,
   termType,
   spoilerLevel,
+  cover = '/images/terms/originium.png',
 }: TermCardProps) {
   return (
     <a
@@ -32,8 +34,8 @@ export default function TermCard({
             {aliases[0] ?? termType ?? 'Terra Term'}
           </p>
         </div>
-        <span className="flex size-11 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-700">
-          <BookOpenText aria-hidden="true" className="size-5" />
+        <span className="flex size-11 items-center justify-center rounded-xl border border-blue-100 bg-slate-950 p-2 shadow-sm">
+          <img src={cover} alt="" aria-hidden="true" className="size-full object-contain" />
         </span>
       </div>
       <p className="mt-4 line-clamp-3 text-sm leading-6 text-slate-600">{summary}</p>
