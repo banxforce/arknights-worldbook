@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronRight, Shield, Sparkle, TowerControl } from 'lucide-react';
+import { ArrowRight, ChevronRight, Shield } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 
 interface FactionBrowseCardProps {
@@ -7,12 +7,16 @@ interface FactionBrowseCardProps {
     title: string;
     summary: string;
     tags: string[];
+    cover?: string;
   }[];
 }
 
-const icons = [Shield, Sparkle, TowerControl] as const;
-
 export default function FactionBrowseCard({ factions }: FactionBrowseCardProps) {
+  const getIconFrameClass = (hasCover: boolean) =>
+    hasCover
+      ? 'border-slate-900 bg-slate-950 p-2.5 shadow-inner shadow-white/10 group-hover:border-blue-400'
+      : 'border-slate-200 bg-slate-50 text-slate-800 group-hover:border-blue-200 group-hover:text-blue-700';
+
   return (
     <Card className="relative min-h-[240px] overflow-hidden p-6">
       <div className="mb-4 flex items-center justify-between gap-4">
@@ -27,23 +31,32 @@ export default function FactionBrowseCard({ factions }: FactionBrowseCardProps) 
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-        {factions.slice(0, 3).map((faction, index) => {
-          const Icon = icons[index % icons.length];
-
-          return (
-            <a
-              key={faction.slug}
-              href={`/factions/${faction.slug}`}
-              className="group flex min-h-[150px] flex-col items-center justify-center rounded-xl border border-slate-200/80 bg-white px-4 py-5 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
+        {factions.slice(0, 3).map((faction) => (
+          <a
+            key={faction.slug}
+            href={`/factions/${faction.slug}`}
+            className="group flex min-h-[150px] flex-col items-center justify-center rounded-xl border border-slate-200/80 bg-white px-4 py-5 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
+          >
+            <span
+              className={`flex size-14 items-center justify-center rounded-2xl border transition ${getIconFrameClass(
+                Boolean(faction.cover),
+              )}`}
             >
-              <span className="flex size-14 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-800 transition group-hover:border-blue-200 group-hover:text-blue-700">
-                <Icon aria-hidden="true" className="size-7" />
-              </span>
-              <h3 className="mt-3 text-base font-semibold text-slate-950">{faction.title}</h3>
-              <p className="mt-2 line-clamp-2 text-xs leading-5 text-slate-500">{faction.summary}</p>
-            </a>
-          );
-        })}
+              {faction.cover ? (
+                <img
+                  src={faction.cover}
+                  alt={`${faction.title} 标志`}
+                  className="size-full object-contain"
+                  loading="lazy"
+                />
+              ) : (
+                <Shield aria-hidden="true" className="size-7" />
+              )}
+            </span>
+            <h3 className="mt-3 text-base font-semibold text-slate-950">{faction.title}</h3>
+            <p className="mt-2 line-clamp-2 text-xs leading-5 text-slate-500">{faction.summary}</p>
+          </a>
+        ))}
       </div>
 
       <button
