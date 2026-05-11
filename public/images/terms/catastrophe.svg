@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 520" role="img" aria-labelledby="title desc">
+  <title id="title">Catastrophe concept icon</title>
+  <desc id="desc">A mobile city under a turbulent storm front with Originium debris.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset=".45" stop-color="#1e3a8a"/>
+      <stop offset="1" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="stone" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset=".45" stop-color="#64748b"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+  <rect width="840" height="520" rx="42" fill="url(#sky)"/>
+  <path d="M58 160c88-78 176-84 264-17 92-88 210-74 319 43 52-3 99 15 141 54" fill="none" stroke="#dbeafe" stroke-width="20" stroke-linecap="round" opacity=".38"/>
+  <path d="M74 205c98-62 184-62 258 0 78-52 161-45 250 21 68-5 127 14 178 57" fill="none" stroke="#bfdbfe" stroke-width="8" stroke-linecap="round" opacity=".55"/>
+  <path d="M432 80 364 247h92l-58 191 168-248h-94l44-110Z" fill="#f8fafc" opacity=".92"/>
+  <path d="M432 80 456 247h-92l92 0-58 191 74-248h-94Z" fill="#60a5fa" opacity=".38"/>
+  <path d="M166 381h506l44 58H120l46-58Z" fill="#0f172a" opacity=".92"/>
+  <path d="M206 330h88v51h-88zM330 286h92v95h-92zM458 316h74v65h-74zM566 268h66v113h-66z" fill="#1e293b"/>
+  <path d="M216 344h18M252 344h18M344 306h20M384 306h20M472 336h18M602 292h16" stroke="#93c5fd" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+  <path d="M148 156 112 112l58 11ZM684 151l72-28-35 66ZM628 87l35-46 18 62ZM252 100l-72-22 32 66Z" fill="url(#stone)" opacity=".9"/>
+  <path d="M135 440h570" stroke="#dbeafe" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+</svg>

@@ -10,6 +10,7 @@ interface FeaturedEntryCardProps {
     summary: string;
     tags: string[];
     spoilerLevel: string;
+    cover?: string;
   };
 }
 
@@ -17,8 +18,12 @@ export default function FeaturedEntryCard({ entry }: FeaturedEntryCardProps) {
   return (
     <Card className="relative min-h-[240px] overflow-hidden p-6">
       <div className="pointer-events-none absolute bottom-0 right-0 h-full w-[43%] min-w-[250px]">
-        <div className="absolute bottom-7 right-8 h-40 w-32 bg-[linear-gradient(135deg,#e2e8f0,#0f172a_45%,#93c5fd)] shadow-[0_26px_50px_rgba(15,23,42,0.22)] [clip-path:polygon(50%_0,88%_25%,76%_100%,24%_100%,8%_28%)]" />
-        <div className="absolute bottom-11 right-20 h-32 w-16 bg-[linear-gradient(150deg,#ffffff,#60a5fa_32%,#0f172a_74%)] opacity-95 [clip-path:polygon(42%_0,100%_34%,70%_100%,0_100%,10%_30%)]" />
+        <img
+          src={entry.cover ?? '/images/terms/originium.png'}
+          alt=""
+          aria-hidden="true"
+          className="absolute bottom-6 right-8 h-44 w-44 object-contain drop-shadow-[0_28px_34px_rgba(15,23,42,0.28)]"
+        />
         <div className="absolute bottom-5 right-2 size-60 rounded-full border border-blue-100" />
         <div className="absolute bottom-10 right-14 size-44 rounded-full border border-blue-100/80" />
         <div className="absolute bottom-20 right-0 h-px w-64 -rotate-12 bg-blue-100" />

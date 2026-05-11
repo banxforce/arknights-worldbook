@@ -1,6 +1,5 @@
 import {
   Archive,
-  BookOpenText,
   Building2,
   Clock3,
   Globe2,
@@ -18,7 +17,7 @@ const navItems = [
   { label: '国家与地区', href: '/regions', icon: Building2 },
   { label: '阵营组织', href: '/factions', icon: Network },
   { label: '时间线', href: '/timeline', icon: Clock3 },
-  { label: '术语词典', href: '/terms', icon: BookOpenText },
+  { label: '术语词典', href: '/terms', icon: null },
   { label: '档案库', href: '/sources', icon: Archive },
 ] as const;
 
@@ -68,13 +67,26 @@ export default function Sidebar({ currentPath }: SidebarProps) {
                     : 'text-slate-600 hover:bg-slate-50 hover:text-slate-950',
                 ].join(' ')}
               >
-                <Icon
-                  aria-hidden="true"
-                  className={[
-                    'size-5 shrink-0 transition',
-                    active ? 'text-blue-600' : 'text-slate-500 group-hover:text-slate-700',
-                  ].join(' ')}
-                />
+                {Icon ? (
+                  <Icon
+                    aria-hidden="true"
+                    className={[
+                      'size-5 shrink-0 transition',
+                      active ? 'text-blue-600' : 'text-slate-500 group-hover:text-slate-700',
+                    ].join(' ')}
+                  />
+                ) : (
+                  <span
+                    aria-hidden="true"
+                    className="flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-[6px]"
+                  >
+                    <img
+                      src="/images/terms/originium.png"
+                      alt=""
+                      className="size-full object-contain"
+                    />
+                  </span>
+                )}
                 <span>{item.label}</span>
               </a>
             );

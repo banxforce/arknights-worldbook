@@ -30,6 +30,7 @@ const filters = [...new Set(terms.flatMap((entry) => entry.data.tags))];
             tags={entry.data.tags}
             termType={entry.data.termType}
             spoilerLevel={entry.data.spoilerLevel}
+            cover={entry.data.cover}
           />
         ))}
       </section>

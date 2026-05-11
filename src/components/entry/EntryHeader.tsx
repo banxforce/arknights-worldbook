@@ -39,6 +39,7 @@ export default function EntryHeader({
   const spoilerLevelLabel = displaySpoilerLevel(spoilerLevel);
 
   const showCoverAsScene = collection === 'regions' && Boolean(cover);
+
   return (
     <header className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
       <div className="grid gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:p-7">
@@ -85,18 +86,13 @@ export default function EntryHeader({
             </>
           ) : cover ? (
             <>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_22%,rgba(255,255,255,0.72),transparent_24%),linear-gradient(115deg,rgba(255,255,255,0.18)_0_18%,transparent_19%_100%)]" />
-              <div className="absolute inset-x-8 bottom-8 top-8 rounded-full border border-white/20" />
-              <div className="absolute left-1/2 top-1/2 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-slate-950/95 p-4 shadow-[0_24px_60px_rgba(15,23,42,0.36)] backdrop-blur">
-                <img
-                  src={cover}
-                  alt={`${title} 标志`}
-                  className="size-full object-contain"
-                  loading="eager"
-                  decoding="async"
-                />
-              </div>
-              <Boxes aria-hidden="true" className="absolute bottom-5 right-5 size-7 text-white/60" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_18%,rgba(219,234,254,0.44),transparent_26%),linear-gradient(135deg,rgba(255,255,255,0.14)_0_18%,transparent_19%_100%)]" />
+              <img
+                src={cover}
+                alt={`${title} 题图`}
+                className="absolute inset-0 h-full w-full object-contain p-5"
+              />
+              <div className="absolute inset-x-5 bottom-5 h-px bg-white/30" />
             </>
           ) : (
             <>
@@ -105,9 +101,9 @@ export default function EntryHeader({
               <div className="absolute left-1/2 top-1/2 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/12 text-white shadow-[0_24px_60px_rgba(15,23,42,0.25)] backdrop-blur">
                 <Icon aria-hidden="true" className="size-11" />
               </div>
-              <Boxes aria-hidden="true" className="absolute bottom-5 right-5 size-7 text-white/60" />
             </>
           )}
+          <Boxes aria-hidden="true" className="absolute bottom-5 right-5 size-7 text-white/60" />
         </div>
       </div>
     </header>
