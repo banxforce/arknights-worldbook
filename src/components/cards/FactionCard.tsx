@@ -1,4 +1,5 @@
 import { ArrowRight, Network, Shield } from 'lucide-react';
+import { displayFactionType } from '@/lib/display';
 import TagPill from './TagPill';
 
 interface FactionCardProps {
@@ -10,6 +11,8 @@ interface FactionCardProps {
 }
 
 export default function FactionCard({ slug, title, summary, tags, factionType }: FactionCardProps) {
+  const factionTypeLabel = displayFactionType(factionType);
+
   return (
     <a
       href={`/factions/${slug}`}
@@ -22,7 +25,7 @@ export default function FactionCard({ slug, title, summary, tags, factionType }:
         <Network aria-hidden="true" className="size-5 text-slate-400" />
       </div>
       <h2 className="mt-5 text-lg font-semibold text-slate-950">{title}</h2>
-      {factionType && <p className="mt-1 text-xs font-medium text-slate-500">{factionType}</p>}
+      {factionTypeLabel && <p className="mt-1 text-xs font-medium text-slate-500">{factionTypeLabel}</p>}
       <p className="mt-4 line-clamp-3 text-sm leading-6 text-slate-600">{summary}</p>
       <div className="mt-5 flex flex-wrap gap-2">
         {tags.slice(0, 3).map((tag) => (

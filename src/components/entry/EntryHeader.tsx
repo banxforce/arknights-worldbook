@@ -1,5 +1,6 @@
 import { Archive, Boxes, CalendarClock, Globe2, Network, Sparkles } from 'lucide-react';
 import TagPill from '@/components/cards/TagPill';
+import { displaySpoilerLevel, displayStatus } from '@/lib/display';
 import type { EntryCollection } from '@/lib/entry';
 
 interface EntryHeaderProps {
@@ -32,6 +33,8 @@ export default function EntryHeader({
   spoilerLevel,
 }: EntryHeaderProps) {
   const Icon = icons[collection];
+  const statusLabel = displayStatus(status);
+  const spoilerLevelLabel = displaySpoilerLevel(spoilerLevel);
 
   return (
     <header className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
@@ -39,8 +42,10 @@ export default function EntryHeader({
         <div className="relative z-10">
           <div className="flex flex-wrap items-center gap-2">
             <TagPill tone="blue">{collectionLabel}</TagPill>
-            <TagPill>{status}</TagPill>
-            <TagPill tone={spoilerLevel === 'none' ? 'slate' : 'amber'}>剧透 {spoilerLevel}</TagPill>
+            {statusLabel && <TagPill>{statusLabel}</TagPill>}
+            {spoilerLevelLabel && (
+              <TagPill tone={spoilerLevel === 'none' ? 'slate' : 'amber'}>{spoilerLevelLabel}</TagPill>
+            )}
           </div>
 
           <h1 className="mt-5 text-3xl font-semibold tracking-normal text-slate-950">{title}</h1>

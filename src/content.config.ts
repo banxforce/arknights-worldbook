@@ -40,6 +40,7 @@ const factions = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/factions' }),
   schema: baseEntrySchema.extend({
     factionType: z.string().optional(),
+    mainlineOrder: z.number().optional(),
   }),
 });
 

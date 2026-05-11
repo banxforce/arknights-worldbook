@@ -4,9 +4,12 @@ import FactionCard from '@/components/cards/FactionCard';
 import EmptyState from '@/components/ui/EmptyState';
 import IndexLayout from '@/layouts/IndexLayout.astro';
 
-const factions = (await getCollection('factions')).sort((a, b) =>
-  a.data.title.localeCompare(b.data.title, 'zh-CN'),
-);
+const factions = (await getCollection('factions')).sort((a, b) => {
+  const orderA = a.data.mainlineOrder ?? Number.POSITIVE_INFINITY;
+  const orderB = b.data.mainlineOrder ?? Number.POSITIVE_INFINITY;
+
+  return orderA - orderB || a.data.title.localeCompare(b.data.title, 'zh-CN');
+});
 
 const filters = [...new Set(factions.flatMap((entry) => entry.data.tags))];
 ---
