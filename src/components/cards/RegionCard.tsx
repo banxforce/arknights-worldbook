@@ -7,16 +7,28 @@ interface RegionCardProps {
   summary: string;
   tags: string[];
   regionType?: string;
+  cover?: string;
 }
 
-export default function RegionCard({ slug, title, summary, tags, regionType }: RegionCardProps) {
+export default function RegionCard({ slug, title, summary, tags, regionType, cover }: RegionCardProps) {
   return (
     <a
       href={`/regions/${slug}`}
       className="group flex min-h-[260px] flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-[0_18px_44px_rgba(15,23,42,0.08)]"
     >
       <div className="relative h-28 overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-300">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(255,255,255,0.75),transparent_22%),linear-gradient(115deg,rgba(255,255,255,0.18)_0_18%,transparent_19%_100%)]" />
+        {cover ? (
+          <img
+            src={cover}
+            alt={`${title}地区封面`}
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(255,255,255,0.75),transparent_22%),linear-gradient(115deg,rgba(255,255,255,0.18)_0_18%,transparent_19%_100%)]" />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-slate-950/5 to-white/10" />
         <MapPinned aria-hidden="true" className="absolute bottom-4 left-5 size-8 text-white/90" />
       </div>
       <div className="flex flex-1 flex-col p-5">

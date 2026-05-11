@@ -12,6 +12,7 @@ interface EntryHeaderProps {
   tags: string[];
   status: string;
   spoilerLevel: string;
+  cover?: string;
 }
 
 const icons = {
@@ -31,6 +32,7 @@ export default function EntryHeader({
   tags,
   status,
   spoilerLevel,
+  cover,
 }: EntryHeaderProps) {
   const Icon = icons[collection];
   const statusLabel = displayStatus(status);
@@ -66,12 +68,30 @@ export default function EntryHeader({
         </div>
 
         <div className="relative min-h-[220px] overflow-hidden rounded-2xl border border-blue-100 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-200">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_22%,rgba(255,255,255,0.72),transparent_24%),linear-gradient(115deg,rgba(255,255,255,0.18)_0_18%,transparent_19%_100%)]" />
-          <div className="absolute inset-x-8 bottom-8 top-8 rounded-full border border-white/20" />
-          <div className="absolute left-1/2 top-1/2 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/12 text-white shadow-[0_24px_60px_rgba(15,23,42,0.25)] backdrop-blur">
-            <Icon aria-hidden="true" className="size-11" />
-          </div>
-          <Boxes aria-hidden="true" className="absolute bottom-5 right-5 size-7 text-white/60" />
+          {cover ? (
+            <>
+              <img
+                src={cover}
+                alt={`${title}封面`}
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-slate-950/10 to-white/10" />
+              <div className="absolute bottom-5 left-5 flex size-12 items-center justify-center rounded-full border border-white/40 bg-slate-950/25 text-white shadow-[0_18px_44px_rgba(15,23,42,0.24)] backdrop-blur">
+                <Icon aria-hidden="true" className="size-6" />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_22%,rgba(255,255,255,0.72),transparent_24%),linear-gradient(115deg,rgba(255,255,255,0.18)_0_18%,transparent_19%_100%)]" />
+              <div className="absolute inset-x-8 bottom-8 top-8 rounded-full border border-white/20" />
+              <div className="absolute left-1/2 top-1/2 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/12 text-white shadow-[0_24px_60px_rgba(15,23,42,0.25)] backdrop-blur">
+                <Icon aria-hidden="true" className="size-11" />
+              </div>
+              <Boxes aria-hidden="true" className="absolute bottom-5 right-5 size-7 text-white/60" />
+            </>
+          )}
         </div>
       </div>
     </header>

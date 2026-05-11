@@ -7,6 +7,7 @@ interface RegionCarouselProps {
     title: string;
     summary: string;
     tags: string[];
+    cover?: string;
   }[];
 }
 
@@ -39,7 +40,17 @@ export default function RegionCarousel({ regions }: RegionCarouselProps) {
             className="group overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
           >
             <div className={`h-20 bg-gradient-to-br ${regionTone[index % regionTone.length]}`}>
-              <div className="h-full w-full bg-[linear-gradient(115deg,rgba(255,255,255,0.18)_0_18%,transparent_19%_100%),radial-gradient(circle_at_72%_28%,rgba(255,255,255,0.56),transparent_24%)]" />
+              {region.cover ? (
+                <img
+                  src={region.cover}
+                  alt={`${region.title}地区封面`}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div className="h-full w-full bg-[linear-gradient(115deg,rgba(255,255,255,0.18)_0_18%,transparent_19%_100%),radial-gradient(circle_at_72%_28%,rgba(255,255,255,0.56),transparent_24%)]" />
+              )}
             </div>
             <div className="p-3">
               <h3 className="text-sm font-semibold text-slate-950">{region.title}</h3>
