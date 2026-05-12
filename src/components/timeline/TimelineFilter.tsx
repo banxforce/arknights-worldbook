@@ -20,10 +20,10 @@ export default function TimelineFilter({
             type="button"
             onClick={() => onFilterChange(filter)}
             className={[
-              'rounded-full border px-3 py-1.5 text-sm font-semibold transition',
+              'h-9 rounded-xl border px-4 text-sm font-semibold transition',
               active
-                ? 'border-blue-200 bg-blue-600 text-white shadow-sm'
-                : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:text-blue-700',
+                ? 'border-blue-600 bg-blue-600 text-white shadow-sm shadow-blue-600/20'
+                : 'border-slate-200 bg-slate-50/80 text-slate-600 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700',
             ].join(' ')}
           >
             {filter}

@@ -100,6 +100,43 @@
         "eventDate": {
           "type": "string"
         },
+        "displayDate": {
+          "type": "string"
+        },
+        "eventSort": {
+          "type": "number"
+        },
+        "era": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "eventType": {
+          "type": "string"
+        },
+        "locationLabel": {
+          "type": "string"
+        },
+        "involved": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "nature": {
+          "type": "string"
+        },
+        "significance": {
+          "type": "string"
+        },
+        "mapNote": {
+          "type": "string"
+        },
+        "sourceNote": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }

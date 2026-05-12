@@ -7,6 +7,7 @@ interface TimelinePreviewProps {
     title: string;
     summary: string;
     eventDate?: string;
+    sortYear?: number;
   }[];
 }
 
@@ -19,25 +20,40 @@ const fallbackNodes = [
 ];
 
 export default function TimelinePreview({ events }: TimelinePreviewProps) {
-  const eventNodes = events.slice(0, 5).map((event) => ({
-    title: event.eventDate ? `${event.eventDate} · ${event.title}` : event.title,
-    summary: event.summary,
-  }));
+  const eventNodes = [...events]
+    .sort((a, b) => (a.sortYear ?? 999999) - (b.sortYear ?? 999999) || a.title.localeCompare(b.title, 'zh-CN'))
+    .slice(0, 5)
+    .map((event) => ({
+      title: event.eventDate ? `${event.eventDate} · ${event.title}` : event.title,
+      summary: event.summary,
+    }));
   const nodes = eventNodes.length >= 3 ? eventNodes : fallbackNodes;
 
   return (
     <Card className="min-h-[220px] p-6">
       <h2 className="text-xl font-semibold tracking-normal text-slate-950">时间线 · 历史轨迹</h2>
 
-      <div className="mt-8 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 xl:grid-cols-5">
-        {nodes.map((node, index) => (
-          <div key={`${node.title}-${index}`} className="relative">
-            <div className="absolute left-4 top-2 hidden h-px w-[calc(100%+1.25rem)] bg-blue-500 xl:block" />
-            <span className="relative z-10 block size-4 rounded-full border-2 border-blue-600 bg-white shadow-[0_0_0_4px_rgba(219,234,254,0.9)]" />
-            <h3 className="mt-4 text-sm font-semibold text-slate-950">{node.title}</h3>
-            <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-500">{node.summary}</p>
+      <div className="mt-8">
+        <div className="relative hidden h-4 xl:block">
+          <div className="absolute left-1 right-1 top-1/2 h-px -translate-y-1/2 bg-blue-500" />
+          <div className="relative z-10 grid grid-cols-5">
+            {nodes.map((node, index) => (
+              <div key={`${node.title}-dot-${index}`} className="flex justify-center">
+                <span className="block size-4 rounded-full border-2 border-blue-600 bg-white shadow-[0_0_0_4px_rgba(219,234,254,0.9)]" />
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 xl:grid-cols-5">
+          {nodes.map((node, index) => (
+            <div key={`${node.title}-${index}`} className="relative xl:text-center">
+              <span className="mb-3 block size-4 rounded-full border-2 border-blue-600 bg-white shadow-[0_0_0_4px_rgba(219,234,254,0.9)] xl:hidden" />
+              <h3 className="text-sm font-semibold text-slate-950">{node.title}</h3>
+              <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-500">{node.summary}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       <a

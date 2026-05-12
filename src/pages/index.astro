@@ -61,6 +61,7 @@ const eventCards = events.map((entry) => ({
   title: entry.data.title,
   summary: entry.data.summary,
   eventDate: entry.data.eventDate,
+  sortYear: entry.data.eventSort ?? Number.parseInt(entry.data.eventDate ?? '', 10),
 }));
 
 const originiumEntry = terms.find((entry) => entry.data.slug === 'originium') ?? terms[0];

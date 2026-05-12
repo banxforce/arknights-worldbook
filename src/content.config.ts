@@ -48,6 +48,17 @@ const events = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/events' }),
   schema: baseEntrySchema.extend({
     eventDate: z.string().optional(),
+    displayDate: z.string().optional(),
+    eventSort: z.number().optional(),
+    era: z.string().optional(),
+    period: z.string().optional(),
+    eventType: z.string().optional(),
+    locationLabel: z.string().optional(),
+    involved: z.array(z.string()).default([]),
+    nature: z.string().optional(),
+    significance: z.string().optional(),
+    mapNote: z.string().optional(),
+    sourceNote: z.string().optional(),
   }),
 });
 
